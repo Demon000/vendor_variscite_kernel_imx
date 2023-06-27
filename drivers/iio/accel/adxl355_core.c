@@ -703,6 +703,7 @@ static const struct iio_chan_spec adxl355_channels[] = {
 	ADXL355_ACCEL_CHANNEL(0, chan_x, X),
 	ADXL355_ACCEL_CHANNEL(1, chan_y, Y),
 	ADXL355_ACCEL_CHANNEL(2, chan_z, Z),
+#if 0
 	{
 		.type = IIO_TEMP,
 		.address = ADXL355_TEMP2_REG,
@@ -717,6 +718,7 @@ static const struct iio_chan_spec adxl355_channels[] = {
 			.endianness = IIO_BE,
 		},
 	},
+#endif
 	IIO_CHAN_SOFT_TIMESTAMP(4),
 };
 
