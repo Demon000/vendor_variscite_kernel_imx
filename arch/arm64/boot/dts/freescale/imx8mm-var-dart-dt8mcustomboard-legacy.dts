@@ -41,6 +41,38 @@
 	};
 };
 
+&ecspi1 {
+	spidev@2 {
+		status = "disabled";
+	};
+
+	accelerometer@2 {
+		compatible = "adi,adxl355";
+		reg = <2>;
+
+		spi-max-frequency = <1000000>;
+		interrupts-extended =
+			<&gpio4 21 IRQ_TYPE_EDGE_RISING>,
+			<&gpio3 20 IRQ_TYPE_EDGE_RISING>,
+			<&gpio4 23 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "INT1", "INT2", "DRDY";
+	};
+};
+
+&pinctrl_ecspi1 {
+	fsl,pins = <
+		MX8MM_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK		0x13
+		MX8MM_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI		0x13
+		MX8MM_IOMUXC_ECSPI1_MISO_ECSPI1_MISO		0x13
+		MX8MM_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x13
+		MX8MM_IOMUXC_GPIO1_IO12_GPIO1_IO12		0x13
+		MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22		0x13
+		MX8MM_IOMUXC_SAI2_RXFS_GPIO4_IO21		0x13
+		MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20		0x13
+		MX8MM_IOMUXC_SAI2_RXD0_GPIO4_IO23		0x13
+	>;
+};
+
 &can0 {
 	spi-max-frequency = <10000000>;
 	/delete-property/ microchip,rx-interrupt;
